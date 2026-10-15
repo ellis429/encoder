@@ -5,7 +5,7 @@ PART = 90_000_000                 # 每份約 90MB,低於 GitHub 的 100MiB 限�
 WRAP = 100                        # 每行 100 字元,避免單行過長
 
 data = open(src, "rb").read()
-open("app.sha256", "w").write(f"{hashlib.sha256(data).hexdigest()}  {src}\n")
+open(f"{src}.app.sha256", "w").write(f"{hashlib.sha256(data).hexdigest()}  {src}\n")
 
 enc = base64.b85encode(data).decode("ascii")
 text = "\n".join(enc[i:i+WRAP] for i in range(0, len(enc), WRAP)) + "\n"
